@@ -1,7 +1,8 @@
 import { useState } from "react";
+import headings from "../../data/Heading";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { RiSearchLine } from "@remixicon/react";
+import { RiSearchLine, RiShoppingCartLine } from "@remixicon/react";
 
 function Navbar(props) {
   let navigate = useNavigate();
@@ -21,7 +22,7 @@ function Navbar(props) {
             alt=""
           />
         </div>
-        <div className="w-[20%] h-[100%] flex flex-col items-center justify-center">
+        <div className="w-[15%] h-[100%] flex flex-col items-center justify-center">
           <h1 className="font-bold text-[20px] cursor-pointer">
             Delivery in 12 minutes
           </h1>
@@ -48,10 +49,32 @@ function Navbar(props) {
             }}
             className="cursor-pointer text-[16px]"
           >
-            LOGIN
+          Login
           </button>
-          <button className="w-[160px] h-[50px] text-[17px] text-white cursor-pointer font-bold rounded-md bg-gray-300">My Card</button>
-          
+          <button
+            onClick={() => {
+              navigate("/Signup");
+            }}
+            className="cursor-pointer text-[16px]"
+          >
+            SIGNUP
+          </button>
+          {props.items > 0 ? (
+            <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm shadow-blue-200">
+              <RiShoppingCartLine />
+              <span className="hidden sm:inline">My Cart</span>
+              <div className="flex flex-col items-center">
+                <span className="bg-white text-blue-600 text-[12px] font-extrabold rounded-full w-6 h-6 flex items-center justify-center leading-none">
+                  {props.items}
+                </span>
+                {props.price > 0 ? <span className='text-white text-[15px]'>{props.price}/-</span> : <><span>prices</span></>}
+              </div>
+            </button>
+          ) : (
+            <button className="inline-flex items-center gap-2 px-6 py-3.5 text-[17px] bg-gray-400 hover:bg-gray-400 active:bg-gray-600 text-white text-sm font-bold cursor-not-allowed rounded-xl transition-colors shadow-sm shadow-blue-200">
+              My cards
+            </button>
+          )}
         </div>
       </div>
       <hr />

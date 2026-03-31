@@ -14,7 +14,7 @@ const Content = (props) => {
       <div className="w-full overflow-x-auto hide-scroll">
         <div className="w-[200%]  h-[95%] flex p-2 gap-5">
           {props.headings.multicards.map((item, index) => {
-            return <Multicards key={index} details={item} />;
+            return <Multicards key={index} details={item}  items={props.items} setItems={props.setItems}  price={props.price} setPrice={props.setPrice}  />;
           })}
         </div>
       </div>

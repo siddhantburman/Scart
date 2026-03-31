@@ -3,9 +3,13 @@ import Cards from "../cardContents/Cards";
 import user from "../../data/users";
 import headings from "../../data/Heading";
 import Content from "../cardContents/Content";
+import { useOutletContext } from "react-router-dom";
 
 
 const Homepage = () => {
+  const {items, setItems, price, setPrice} = useOutletContext()
+
+
   return (
     <section className="w-full  min-h-screen flex flex-col bg-blue-50 items-center mt-20 pt-10 px-10">
       {/* Top Banner */}
@@ -39,7 +43,7 @@ const Homepage = () => {
       {/* order Cards */}
       <div className="w-full min-h-[100vh] flex flex-col items-center gap-5 mt-8">
          {headings.map((headings, index) => {
-          return <Content key={index} headings={headings} />
+          return <Content key={index} headings={headings}  items={items} setItems={setItems}  price={price} setPrice={setPrice} />
         })};
       </div>
     </section>

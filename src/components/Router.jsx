@@ -7,6 +7,7 @@ import Homepage from "../pages/Homepage";
 import Search from "../pages/Search";
 import MainOutlet from "./MainOutlet";
 import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 
 
 let route = createBrowserRouter([
@@ -19,6 +20,7 @@ let route = createBrowserRouter([
       { path: "About", element: <About /> },
       { path: "Contact", element: <Contact /> },
       { path: "Login", element: <Login /> },
+      { path: "Signup", element: <Signup /> },
     ]
   },
   {
