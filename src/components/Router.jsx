@@ -19,14 +19,15 @@ let route = createBrowserRouter([
       { index: true, element: <App /> },
       { path: "About", element: <About /> },
       { path: "Contact", element: <Contact /> },
-      { path: "Login", element: <Login /> },
-      { path: "Signup", element: <Signup /> },
     ]
   },
   {
     path: "/s",
     element: <Search />
   },
+  { path: "Login", element: <Login /> },
+  { path: "Signup", element: <Signup /> },
+
 ])
 
 export default route
