@@ -8,6 +8,7 @@ import Search from "../pages/Search";
 import MainOutlet from "./MainOutlet";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import Address from "../pages/Address";
 
 
 let route = createBrowserRouter([
@@ -27,6 +28,7 @@ let route = createBrowserRouter([
   },
   { path: "Login", element: <Login /> },
   { path: "Signup", element: <Signup /> },
+  { path: "Address", element: <Address /> },
 
 ])
 

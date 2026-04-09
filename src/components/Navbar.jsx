@@ -22,7 +22,10 @@ function Navbar(props) {
             alt=""
           />
         </div>
-        <div className="w-[15%] h-[100%] flex flex-col items-center justify-center">
+        <div className="w-[15%] h-[100%] flex flex-col items-center justify-center"
+         onClick={() => {
+            navigate("/Address");
+          }}>
           <h1 className="font-bold text-[20px] cursor-pointer">
             Delivery in 12 minutes
           </h1>
