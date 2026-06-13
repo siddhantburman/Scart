@@ -1,86 +1,111 @@
 import { useState } from "react";
 import headings from "../../data/Heading";
 import React from "react";
+import Mycard from "../pages/Mycard";
 import { useNavigate } from "react-router-dom";
 import { RiSearchLine, RiShoppingCartLine } from "@remixicon/react";
 
 function Navbar(props) {
   let navigate = useNavigate();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   return (
     <>
-      <div className="w-full h-[12vh] bg-blue-50 flex justify-around fixed item-center">
-        <div
-          onClick={() => {
-            navigate("/");
-          }}
-          className="w-[12%] h-full overflow-hidden"
-        >
-          <img
-            className="w-full h-[100%] cursor-pointer
-             object-cover "
-            src="/Scart.png"
-            alt=""
-          />
+      <div className="w-full min-h-[12vh] md:h-[12vh] bg-blue-50 flex flex-col md:flex-row items-center justify-between px-4 py-3 md:py-0 fixed top-0 left-0 z-50 border-b border-gray-200 gap-3 md:gap-0">
+        
+        <div className="w-full md:w-auto flex items-center justify-between md:justify-start gap-4">
+          {/* Logo Section */}
+          <div
+            onClick={() => navigate("/")}
+            className="w-20 h-10 md:w-28 md:h-full overflow-hidden flex items-center cursor-pointer shrink-0"
+          >
+            <img
+              className="w-full h-full object-contain"
+              src="/Scart.png"
+              alt="Logo"
+            />
+          </div>
+
+          {/* Address Section */}
+          <div 
+            className="flex-1 md:flex-none max-w-[180px] sm:max-w-[240px] md:max-w-xs flex flex-col justify-center cursor-pointer"
+            onClick={() => navigate("/Address")}
+          >
+            <h1 className="font-extrabold text-xs sm:text-sm md:text-base text-gray-900 truncate">
+              Delivery in 12 minutes
+            </h1>
+            <h2 className="text-[10px] sm:text-xs md:text-sm text-gray-600 truncate">
+              9/43 malik compound...
+            </h2>
+          </div>
         </div>
-        <div className="w-[15%] h-[100%] flex flex-col items-center justify-center"
-         onClick={() => {
-            navigate("/Address");
-          }}>
-          <h1 className="font-bold text-[20px] cursor-pointer">
-            Delivery in 12 minutes
-          </h1>
-          <h2 className="text-[20px] cursor-pointer">9/43 malik compound...</h2>
-        </div>
-        <div className="w-[45%] h-[100%] flex items-center justify-center">
-          <div className="w-full h-[60%] flex items-center justify-center  rounded-md border-2 border-gray-300">
-            {" "}
-            <RiSearchLine />
+
+        <div className="w-full h-full md:w-[45%] flex items-center justify-center order-3 md:order-2">
+          <div className="w-full h-11 md:h-[60%] flex items-center bg-white rounded-xl border border-gray-300 px-3 shadow-sm focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-transparent transition-all">
+            <RiSearchLine className="text-gray-400 w-5 h-5 shrink-0" />
             <input
-              onClick={() => {
-                navigate("/S");
-              }}
+              onClick={() => navigate("/S")}
               type="text"
-              placeholder=" Search product"
-              className="w-[95%] h-[100%] pl-1 focus:outline-none"
+              placeholder="Search product"
+              className="w-full h-full pl-2 text-sm md:text-base focus:outline-none bg-transparent cursor-pointer"
             />
           </div>
         </div>
-        <div className="w-[20%] h-[100%] flex items-center gap-10 justify-center">
+
+        <div className="w-auto flex items-center gap-3 sm:gap-4 md:gap-6 justify-end order-2 md:order-3 shrink-0">
           <button
-            onClick={() => {
-              navigate("/Login");
-            }}
-            className="cursor-pointer text-[16px]"
+            onClick={() => navigate("/Login")}
+            className="cursor-pointer text-xs sm:text-sm md:text-base font-bold text-gray-700 hover:text-blue-600 transition-colors"
           >
-          Login
+            Login
           </button>
           <button
-            onClick={() => {
-              navigate("/Signup");
-            }}
-            className="cursor-pointer text-[16px]"
+            onClick={() => navigate("/Signup")}
+            className="cursor-pointer text-xs sm:text-sm md:text-base font-bold text-gray-700 hover:text-blue-600 transition-colors"
           >
             SIGNUP
           </button>
+
           {props.items > 0 ? (
-            <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm shadow-blue-200">
-              <RiShoppingCartLine />
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 md:px-4 md:py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs md:text-sm font-black rounded-xl transition-all shadow-md shadow-blue-200"
+            >
+              <RiShoppingCartLine className="w-4 h-4 md:w-5 md:h-5" />
               <span className="hidden sm:inline">My Cart</span>
-              <div className="flex flex-col items-center">
-                <span className="bg-white text-blue-600 text-[12px] font-extrabold rounded-full w-6 h-6 flex items-center justify-center leading-none">
+              <div className="flex flex-col md:flex-row items-center md:gap-1.5">
+                <span className="bg-white text-blue-600 text-[10px] md:text-xs font-black rounded-full w-5 h-5 flex items-center justify-center leading-none">
                   {props.items}
                 </span>
-                {props.price > 0 ? <span className='text-white text-[15px]'>{props.price}/-</span> : <><span>prices</span></>}
+                {props.price > 0 && (
+                  <span className='text-white text-[11px] md:text-sm font-bold md:ml-0.5'>
+                    {props.price}/-
+                  </span>
+                )}
               </div>
             </button>
           ) : (
-            <button className="inline-flex items-center gap-2 px-6 py-3.5 text-[17px] bg-gray-400 hover:bg-gray-400 active:bg-gray-600 text-white text-sm font-bold cursor-not-allowed rounded-xl transition-colors shadow-sm shadow-blue-200">
-              My cards
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 md:px-5 md:py-3 bg-gray-300 text-gray-500 text-xs md:text-sm font-bold cursor-not-allowed rounded-xl transition-colors">
+              <RiShoppingCartLine className="w-4 h-4 md:w-5 md:h-5 opacity-60" />
+              <span>Empty</span>
             </button>
           )}
         </div>
+
+        <Mycard 
+          isOpen={isCartOpen} 
+          onClose={() => setIsCartOpen(false)} 
+          items={props.items}        
+          price={props.price}        
+          cartItems={props.cartList || []}
+          setItems={props.setItems}
+          setPrice={props.setPrice}
+          setCartList={props.setCartList}
+        />
+
       </div>
-      <hr />
+
+      <div className="h-[15vh] sm:h-[16vh] md:h-[12vh]"></div>
     </>
   );
 }

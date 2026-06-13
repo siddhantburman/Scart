@@ -4,12 +4,15 @@ import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
 
 const MainOutlet = ()=> {
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [items , setItems] = useState(0)  
   const [price , setPrice] = useState(0)
+    const [cartList, setCartList] = useState([]);
+  
   console.log(price)
     return (
     <>
-      <Navbar items={items} price={price}/>
+      <Navbar items={items} price={price}  cartItems={cartList}  onCartClick={() => setIsCartOpen(true)}/>
       <Outlet context={{items , setItems, price, setPrice}}/>
       <Footer />
     </>

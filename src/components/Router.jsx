@@ -9,6 +9,7 @@ import MainOutlet from "./MainOutlet";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Address from "../pages/Address";
+import Mycard from "../pages/Mycard";
 
 
 let route = createBrowserRouter([
@@ -29,6 +30,7 @@ let route = createBrowserRouter([
   { path: "Login", element: <Login /> },
   { path: "Signup", element: <Signup /> },
   { path: "Address", element: <Address /> },
+  { path: "Mycard", element: <Mycard /> },
 
 ])
 

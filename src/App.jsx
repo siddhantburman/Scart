@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <>
-     <div className="w-full min-h-full">
+     <div className="w-full min-h-full bg-blue-50">
       {/* <Navbar/> */}
      <Homepage/>
      {/* <Footer/> */}
